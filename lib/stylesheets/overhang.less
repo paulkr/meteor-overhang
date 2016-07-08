@@ -5,6 +5,7 @@
 
 @import url("https://fonts.googleapis.com/css?family=Roboto");
 
+// Overhang container
 .overhang {
   position    : fixed;
   display     : none;
@@ -18,11 +19,13 @@
   text-align  : center;
 }
 
+// Message text
 .overhang .message {
   color     : #FFF;
   font-size : 20px;
 }
 
+// Close button
 .overhang .close {
   vertical-align : middle;
   cursor         : pointer;
@@ -37,3 +40,42 @@
 		content : "×";
 	}
 }
+
+// Prompt message
+.overhang .prompt-field {
+  height        : 30px;
+  width         : 250px;
+  border-radius : 5px;
+  border        : none;
+  display       : block;
+  margin-left   : auto;
+  margin-right  : auto;
+  margin-top    : 15px;
+  bottom        : 7px;
+  position      : relative;
+  padding-left  : 3px;
+  padding-right : 3px;
+  outline       : none;
+  font-family   : "Roboto", sans-serif;
+  font-size     : 15px;
+}
+
+// Confirmation options
+.overhang .yes-option,
+.overhang .no-option {
+  width         : 50px;
+  height        : 30px;
+  border        : none;
+  outline       : none;
+  border-radius : 4px;
+  font-size     : 20px;
+  color         : #FFF;
+  cursor        : pointer;
+  margin        : 0 6px;
+}
+
+.overhang .yes-option {
+  margin-left : 15px;
+}
+
+
