@@ -6,7 +6,7 @@
 Package.describe({
   name: "paulkr:overhang",
   version: "0.0.1",
-  summary: "A client-side meteor package for notifications.",
+  summary: "A client-side meteor package for notifications, prompts and confirmations.",
   git: "https://github.com/paulkr/meteor-overhang",
   documentation: "README.md"
 });
