@@ -43,14 +43,14 @@ If you want to display either a prompt or confirmation alert, set the type to `p
 ```javascript
 // Basic notification defaults :)
 $("body").overhang({
-  primary: "#2ECC71",     // The background color of the alert.
-  accent: "#27AE60",      // The bottom border color.
+  	primary: "#2ECC71",     // The background color of the alert.
+  	accent: "#27AE60",      // The bottom border color.
 	textColor: "#FFFFF",    // The color of the text.
 	message: "What's up?",  // The message to be displayed in your alert.
 	duration: 1.5,          // The duration in seconds to show the alert for.
 	speed: 500,             // The speed to drop and raise the alert in milliseconds.
 	closeConfirm: false,    // Set this to true if you would like the user to have to
-												  // close the alert rather than it disappearing by itself.
+				// close the alert rather than it disappearing by itself.
 	upper: false,           // Boolean if the text should be uppercased
 	easing: "easeOutBounce" // JQuery UI easing option for the drop effect.
 });
@@ -88,7 +88,7 @@ When using confirmations, there are additional options that you can customize.
 ```javascript
 // Confirmation alert defaults :)
 $("body").overhang({
-  yesMessage: "Yes",      // The text for the "true" option button.
+  	yesMessage: "Yes",      // The text for the "true" option button.
 	noMessage: "No",        // The text for the "false" option button.
 	yesColor: "#2ECC71",    // The "true" button color,
 	noColor: "#E74C3C"      // The "false" button color
