@@ -2,6 +2,7 @@ meteor-overhang
 ===============
 
 overhang is a client-side package for notifications, prompts and confirmations in meteor.
+
 It was created after the [overhang.js jQuery Plugin](http://github.com/paulkr/overhang.js).
 
 
@@ -37,39 +38,23 @@ $("body").overhang({
 });
 ```
 
-`primary` - The background color of the alert.
-
-`accent` - The bottom border color.
-
 If you want to display either a prompt or confirmation alert, set the type to `prompt` or `confirm`, respectively. Prompts and confirmations both have preset themes, but you can customize them by using the `custom` option.
 
-##### `textColor`
-
-The color of the text. The default is set to white.
-
-##### `message`
-
-The message to be displayed in your alert.
-
-##### `duration`
-
-The duration in seconds to show the alert for. The default is `1.5` seconds.
-
-##### `speed`
-
-The speed to drop and raise the alert in milliseconds. The default is set to `500`.
-
-##### `closeConfirm`
-
-Set this to true if you would like the user to have to close the alert rather than it disappearing by itself. The default is set to `false`.
-
-##### `upper`
-
-Set this to true if you would like your message in all uppercase letters. The default is set to `false`.
-
-##### `easing`
-
-JQuery UI easing option for the drop effect. The default is set to `"easeOutBounce"`
+```javascript
+// Basic notification defaults :)
+$("body").overhang({
+  primary: "#2ECC71",     // The background color of the alert.
+  accent: "#27AE60",      // The bottom border color.
+	textColor: "#FFFFF",    // The color of the text.
+	message: "What's up?",  // The message to be displayed in your alert.
+	duration: 1.5,          // The duration in seconds to show the alert for.
+	speed: 500,             // The speed to drop and raise the alert in milliseconds.
+	closeConfirm: false,    // Set this to true if you would like the user to have to
+												  // close the alert rather than it disappearing by itself.
+	upper: false,           // Boolean if the text should be uppercased
+	easing: "easeOutBounce" // JQuery UI easing option for the drop effect.
+});
+```
 
 #### Basic Alert Notification Example
 
@@ -100,21 +85,15 @@ $("body").overhang({
 
 When using confirmations, there are additional options that you can customize.
 
-##### `yesMessage`
-
-This is the text on the "true" button that would to display. The default is set to `"Yes"`.
-
-##### `noMessage`
-
-This is the text on the "false" button that would to display. The default is set to `"No"`.
-
-##### `yesColor`
-
-This is the color of the "true" button. The default is set to `"#2ECC71"`.
-
-##### `noColor`
-
-This is the color of the "false" button. The default is set to `"#E74C3C"`.
+```javascript
+// Confirmation alert defaults :)
+$("body").overhang({
+  yesMessage: "Yes",      // The text for the "true" option button.
+	noMessage: "No",        // The text for the "false" option button.
+	yesColor: "#2ECC71",    // The "true" button color,
+	noColor: "#E74C3C"      // The "false" button color
+});
+```
 
 #### Confirmation Example
 
