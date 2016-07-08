@@ -19,7 +19,6 @@ Package.onUse(function (api) {
     "templating",
     "session",
     "jquery",
-    "mrt:jquery-easing",
     "less",
   ], "client");
 
@@ -27,6 +26,7 @@ Package.onUse(function (api) {
     "lib/templates/body.html",
     "lib/templates/overhang.html",
     "lib/stylesheets/overhang.less",
+    "lib/js/jquery.easing.js",
     "overhang.js",
   ], "client");
 
