@@ -31,7 +31,7 @@ The preset types are `success`, `error`, `warn`, `info`, `prompt` and `confirm`.
 If you would like to use a custom theme, leave this parameter blank and follow the rules for setting a custom theme.
 
 ```javascript
-$("body").overhang({
+overhang.notify({
 	custom: true,       // Set custom to true
 	primary: "#34495E", // Your custom primary color
 	accent: "#F4B350"   // Your custom accent color
@@ -42,7 +42,7 @@ If you want to display either a prompt or confirmation alert, set the type to `p
 
 ```javascript
 // Basic notification defaults :)
-$("body").overhang({
+overhang.notify({
 	primary: "#2ECC71",     // The background color of the alert.
 	accent: "#27AE60",      // The bottom border color.
 	textColor: "#FFFFF",    // The color of the text.
@@ -59,7 +59,7 @@ $("body").overhang({
 
 ```javascript
 // Some error notification
-$("body").overhang({
+overhang.notify({
 	type: "error",
 	message: "You could not be logged in at this time.",
 	closeConfirm: "true"
@@ -74,7 +74,7 @@ When using prompts, all you need to do is set the `type` parameter to `"prompt"`
 
 ```javascript
 // Some prompt notification
-$("body").overhang({
+overhang.notify({
 	type: "prompt",
 	message: "What is your name"
 });
@@ -86,7 +86,7 @@ When using confirmations, there are additional options that you can customize.
 
 ```javascript
 // Confirmation alert defaults :)
-$("body").overhang({
+overhang.notify({
 	yesMessage: "Yes",      // The text for the "true" option button.
 	noMessage: "No",        // The text for the "false" option button.
 	yesColor: "#2ECC71",    // The "true" button color,
@@ -98,7 +98,7 @@ $("body").overhang({
 
 ```javascript
 // Some confirmation
-$("body").overhang({
+overhang.notify({
 	type: "confirm",
 	yesMessage: "Yes please!",
 	noMessage: "No thanks."
