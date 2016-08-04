@@ -31,7 +31,8 @@ class Overhang {
       speed        : 500,
       closeConfirm : false,
       upper        : false,
-      easing       : "easeOutBounce"
+      easing       : "easeOutBounce",
+      callback     : () => {}
     };
   }
 
@@ -107,12 +108,14 @@ class Overhang {
       Session.set("overhangPrompt", null);
 
       // Submit action
-      inputField.keydown(function (e) {
+      inputField.keydown((e) => {
         if (e.keyCode == 13) {
 
           // Add the value to a session variable
           Session.set("overhangPrompt", inputField.val());
-          element.slideUp(attributes.speed);
+          element.slideUp(attributes.speed, () => {
+            attributes.callback();
+          });
         }
       });
 
@@ -128,14 +131,18 @@ class Overhang {
       Session.set("overhangConfirm", null);
 
       // Append the boolean selection to a session variable
-      yesButton.click(function () {
+      yesButton.click(() => {
         Session.set("overhangConfirm", true);
-        element.slideUp(attributes.speed);
+        element.slideUp(attributes.speed, () => {
+          attributes.callback();
+        });
       });
 
-      noButton.click(function () {
+      noButton.click(() => {
         Session.set("overhangConfirm", false);
-        element.slideUp(attributes.speed);
+        element.slideUp(attributes.speed, () => {
+          attributes.callback();
+        });
       });
     }
 
@@ -144,15 +151,23 @@ class Overhang {
       element.slideDown(attributes.speed, attributes.easing);
 
       // Allow click to close
-      $(".overhang .close").click(function () {
-        element.slideUp(attributes.speed);
+      $(".overhang .close").click(() => {
+        if (attributes.type !== "prompt" && attributes.type !== "confirm") {
+          element.slideUp(attributes.speed, () => {
+            attributes.callback();
+          });
+        } else {
+          element.slideUp(attributes.speed);
+        }
       });
 
     } else {
       element
         .slideDown(attributes.speed, attributes.easing)
         .delay(attributes.duration * 1000)
-        .slideUp(attributes.speed);
+        .slideUp(attributes.speed, () => {
+          attributes.callback();
+        });
     }
   }
 }
