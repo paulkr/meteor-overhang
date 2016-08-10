@@ -17,9 +17,13 @@ class Overhang {
       "confirm" : ["#1ABC9C", "#16A085"],
       "blank"   : ["#34495E", "#2C3E50"]
     };
+  }
 
-    // Defaults attributes
-    this.defaults = {
+  /**
+   * Defaults attributes
+   */
+  getDefaults () {
+    return {
       type         : "success",
       message      : "This is an overhang.js message!",
       textColor    : "#FFFFFF",
@@ -38,14 +42,25 @@ class Overhang {
 
   notify (args) {
 
-    // Remove old instances of elements
-    $(".close").remove();
-    $(".yes-option").remove();
-    $(".no-option").remove();
-    $(".prompt-field").remove();
-
     const element = $(".overhang"); // Element
-    const attributes = $.extend(this.defaults, args); // Attributes
+
+    // Reset overhang if it is called again while the animation is not finished
+    element.finish();
+    element.slideUp(50);
+  
+    const attributes = $.extend(this.getDefaults(), args); // Attributes
+    
+    // Overhang properties
+    const closeButton = $(".overhang .close");
+    const inputField  = $(".overhang .prompt-field");
+    const yesButton   = $(".overhang .yes-option");
+    const noButton    = $(".overhang .no-option");
+  
+    // Remove old instances of elements
+    closeButton.hide();
+    inputField.hide();
+    yesButton.hide();
+    noButton.hide();
 
     // Set default value
     const validTypes = ["success", "error", "warn", "info", "prompt", "confirm"];
@@ -79,53 +94,54 @@ class Overhang {
     $(".overhang .message").css("color", attributes.textColor);
     $(".overhang .message").text(attributes.upper ? attributes.message.toUpperCase() : attributes.message);
 
-    // Additional overhang elements
-    const inputField = $("<input class='prompt-field' />");
-    const yesButton = $("<button class='yes-option'>" + attributes.yesMessage + "</button>");
-    const noButton = $("<button class='no-option'>" + attributes.noMessage + "</button>");
+    // Add the text to the buttons
+    yesButton.text(attributes.yesMessage);
+    noButton.text(attributes.noMessage);
 
     yesButton.css("background-color", attributes.yesColor);
     noButton.css("background-color", attributes.noColor);
 
-    let close; // Close button
-
     // Handle close button
     if (attributes.closeConfirm) {
 
-      // Create and append the close button to the overhang alert
-      close = $("<div class='close'></div>");
-      element.append(close);
-
       // Set the accent color to the close button
-      $(".overhang .close").css("color", attributes.accent);
+      closeButton.css("color", attributes.accent);
+
+      closeButton.show();
     }
 
     // Prompt alert
     if (attributes.type === "prompt") {
-      element.append(inputField);
 
       // Reset the session variable to null
       Session.set("overhangPrompt", null);
 
+      // Show and focus the input field
+      inputField.show();
+      inputField.focus();
+
       // Submit action
       inputField.keydown((e) => {
-        if (e.keyCode == 13) {
+        if (e.keyCode == 13 && inputField.is(":focus")) {
 
           // Add the value to a session variable
           Session.set("overhangPrompt", inputField.val());
+
           element.slideUp(attributes.speed, () => {
             attributes.callback();
+            inputField.val(""); // Reset input
+            inputField.unbind("keydown"); // Unbind keydown event
           });
         }
+
       });
 
       // Confirmation alert
     } else if (attributes.type === "confirm") {
 
-      // Append the buttons
-      element.append(yesButton);
-      element.append(noButton);
-      element.append(close);
+      // Show the option buttons
+      yesButton.show();
+      noButton.show();
 
       // Reset the session variable to null
       Session.set("overhangConfirm", null);
@@ -135,13 +151,22 @@ class Overhang {
         Session.set("overhangConfirm", true);
         element.slideUp(attributes.speed, () => {
           attributes.callback();
+
+          // Unbind click events
+          yesButton.unbind("click");
+          noButton.unbind("click");
         });
       });
 
       noButton.click(() => {
         Session.set("overhangConfirm", false);
+
         element.slideUp(attributes.speed, () => {
           attributes.callback();
+
+          // Unbind click events
+          noButton.unbind("click");
+          yesButton.unbind("click");
         });
       });
     }
@@ -151,10 +176,12 @@ class Overhang {
       element.slideDown(attributes.speed, attributes.easing);
 
       // Allow click to close
-      $(".overhang .close").click(() => {
+      closeButton.click(() => {
         if (attributes.type !== "prompt" && attributes.type !== "confirm") {
+         
           element.slideUp(attributes.speed, () => {
             attributes.callback();
+            closeButton.unbind("click"); // Unbind click event
           });
         } else {
           element.slideUp(attributes.speed);
