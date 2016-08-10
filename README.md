@@ -3,7 +3,7 @@ meteor-overhang
 
 `overhang` is a client-side package for notifications, prompts and confirmations in meteor.
 
-It was created after the [overhang.js jQuery Plugin](http://github.com/paulkr/overhang.js).
+[Check out a demo!](http://meteor-overhang.herokuapp.com)
 
 
 Usage
