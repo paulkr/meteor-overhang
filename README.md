@@ -43,15 +43,16 @@ If you want to display either a prompt or confirmation alert, set the type to `p
 ```javascript
 // Basic notification defaults :)
 overhang.notify({
-	primary: "#2ECC71",     // The background color of the alert.
-	accent: "#27AE60",      // The bottom border color.
-	textColor: "#FFFFF",    // The color of the text.
-	message: "What's up?",  // The message to be displayed in your alert.
-	duration: 1.5,          // The duration in seconds to show the alert for.
-	speed: 500,             // The speed to drop and raise the alert in milliseconds.
-	closeConfirm: false,    // Set this to true if you would like the user to have to close the alert rather than it disappearing by itself.
-	upper: false,           // Boolean if the text should be uppercased
-	easing: "easeOutBounce" // JQuery UI easing option for the drop effect.
+	primary: "#2ECC71",      // The background color of the alert.
+	accent: "#27AE60",       // The bottom border color.
+	textColor: "#FFFFF",     // The color of the text.
+	message: "What's up?",   // The message to be displayed in your alert.
+	duration: 1.5,           // The duration in seconds to show the alert for.
+	speed: 500,              // The speed to drop and raise the alert in milliseconds.
+	closeConfirm: false,     // Set this to true if you would like the user to have to close the alert rather than it disappearing by itself.
+	upper: false,            // Boolean if the text should be uppercased
+	easing: "easeOutBounce", // JQuery UI easing option for the drop effect.
+	html: false              // If the message should be rendered as HTML
 });
 ```
 
