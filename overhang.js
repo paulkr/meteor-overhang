@@ -36,6 +36,7 @@ class Overhang {
       closeConfirm : false,
       upper        : false,
       easing       : "easeOutBounce",
+      html         : false,
       callback     : () => {}
     };
   }
@@ -55,6 +56,7 @@ class Overhang {
     const inputField  = $(".overhang .prompt-field");
     const yesButton   = $(".overhang .yes-option");
     const noButton    = $(".overhang .no-option");
+    const message     = $(".overhang .message");
   
     // Remove old instances of elements
     closeButton.hide();
@@ -90,9 +92,15 @@ class Overhang {
     element.css("background-color", attributes.primary);
     element.css("border-bottom", "6px solid " + attributes.accent);
 
-    // Message
-    $(".overhang .message").css("color", attributes.textColor);
-    $(".overhang .message").text(attributes.upper ? attributes.message.toUpperCase() : attributes.message);
+    // Style message
+    message.css("color", attributes.textColor);
+
+    // Assign html or text
+    if (attributes.html) {
+      message.html(attributes.message);
+    } else {
+      message.text(attributes.upper ? attributes.message.toUpperCase() : attributes.message);
+    }
 
     // Add the text to the buttons
     yesButton.text(attributes.yesMessage);
