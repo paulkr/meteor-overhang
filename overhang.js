@@ -41,7 +41,7 @@ class Overhang {
     };
   }
 
-  notify (args) {
+  notify (args) {console.log('test')
 
     const element = $(".overhang"); // Element
 
@@ -52,11 +52,11 @@ class Overhang {
     const attributes = $.extend(this.getDefaults(), args); // Attributes
     
     // Overhang properties
-    const closeButton = $(".overhang .close");
-    const inputField  = $(".overhang .prompt-field");
-    const yesButton   = $(".overhang .yes-option");
-    const noButton    = $(".overhang .no-option");
-    const message     = $(".overhang .message");
+    const closeButton = $(".overhang-close");
+    const inputField  = $(".overhang-prompt-field");
+    const yesButton   = $(".overhang-yes-option");
+    const noButton    = $(".overhang-no-option");
+    const message     = $(".overhang-message");
   
     // Remove old instances of elements
     closeButton.hide();
