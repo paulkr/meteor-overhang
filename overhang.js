@@ -41,7 +41,7 @@ class Overhang {
     };
   }
 
-  notify (args) {console.log('test')
+  notify (args) {
 
     const element = $(".overhang"); // Element
 
@@ -136,7 +136,7 @@ class Overhang {
           Session.set("overhangPrompt", inputField.val());
 
           element.slideUp(attributes.speed, () => {
-            attributes.callback();
+            attributes.callback(Session.get("overhangPrompt"));
             inputField.val(""); // Reset input
             inputField.unbind("keydown"); // Unbind keydown event
           });
@@ -158,7 +158,7 @@ class Overhang {
       yesButton.click(() => {
         Session.set("overhangConfirm", true);
         element.slideUp(attributes.speed, () => {
-          attributes.callback();
+          attributes.callback(Session.get("overhangConfirm"));
 
           // Unbind click events
           yesButton.unbind("click");
@@ -170,7 +170,7 @@ class Overhang {
         Session.set("overhangConfirm", false);
 
         element.slideUp(attributes.speed, () => {
-          attributes.callback();
+          attributes.callback(Session.get("overhangConfirm"));
 
           // Unbind click events
           noButton.unbind("click");

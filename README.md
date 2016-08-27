@@ -112,14 +112,23 @@ Retrieving the Data
 
 Both the `prompt` and `confirm` features allow you to get input from the user. The data is stored as Session variables.
 
+To retrieve the data, you simply pass in a callback function with one parameter:
+
 ```javascript
+overhang.notify({
+   type: "prompt",
+   message: "What is your name",
+   callback: function (value) {
+      alert("You entered " + value);
+   }
+});
+```
 
-// From a prompt
-alert(Session.get("overhangPrompt"));
+or you can access it manually as so:
 
-// From a confirmation (returns either true or false)
-alert(Session.get("overhangConfirm"));
-
+```javascript
+alert(Session.get("overhangPrompt")); // From a prompt
+alert(Session.get("overhangConfirm")); // From a confirmation
 ```
 
 Callbacks
@@ -141,9 +150,9 @@ overhang.notify({
 	message: "Are you sure?",
 
   // This code will run once an option is clicked.
-	callback: () => {
-		var selection = Session.get("overhangPrompt");
-		alert("You made your selection of " + selection);
+	callback: (selection) => {
+		var answer = selection ? "yes" : "no";
+		alert("You made your selection of " + answer);
 	}
 });
 ```
